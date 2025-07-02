@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Sitio Web</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413'); /* Imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* para hacer contraste con el fondo */
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        main {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Logo del sitio">
+            <h1>Bienvenido a mi sitio web</h1>
+        </header>
+
+        <main>
+            <p>Haz clic en el siguiente enlace para ver un video:</p>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Ver video en streaming</a>
+        </main>
+
+        <footer>
+            <p>Curso: Desarrollo Web Básico</p>
+            <p>Nombre: Miamor Apellido Ejemplo</p>
+            <p>Código: 123456789</p>
+            <p>Correo: miamor.ejemplo@correo.com</p>
+        </footer>
+    </div>
+</body>
+</html>
