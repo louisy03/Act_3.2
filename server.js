@@ -16,8 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Crear y conectar base de datos SQLite
-const db = new sqlite3.Database('database.db');
-
+const db = new sqlite3.Database(process.env.DATABASE_URL || 'database.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 // Crear tabla si no existe
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS registros (
