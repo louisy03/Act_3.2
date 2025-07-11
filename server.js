@@ -47,12 +47,31 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CR
             password TEXT NOT NULL,
             rol TEXT DEFAULT 'usuario'
         )`);
+
         db.run(`CREATE TABLE IF NOT EXISTS comentarios (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             usuario TEXT NOT NULL,
             contenido TEXT NOT NULL,
             creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`);
+
+        // Crear superusuario automáticamente si no existe
+        db.get("SELECT * FROM usuarios WHERE nombre = 'admin'", (err, row) => {
+            if (err) return console.error('Error al verificar superusuario:', err.message);
+
+            if (!row) {
+                db.run(`INSERT INTO usuarios (nombre, correo, password, rol)
+                        VALUES ('admin', 'admin@admin.com', '031204zLouisyz', 'admin')`,
+                    (err) => {
+                        if (err) {
+                            console.error('❌ Error al crear superusuario:', err.message);
+                        } else {
+                            console.log('✅ Superusuario creado: admin@admin.com / 031204zLouisyz');
+                        }
+                    }
+                );
+            }
+        });
     });
 });
 
