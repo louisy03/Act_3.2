@@ -54,24 +54,6 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CR
             contenido TEXT NOT NULL,
             creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`);
-
-        // Crear superusuario automáticamente si no existe
-        db.get("SELECT * FROM usuarios WHERE nombre = 'admin'", (err, row) => {
-            if (err) return console.error('Error al verificar superusuario:', err.message);
-
-            if (!row) {
-                db.run(`INSERT INTO usuarios (nombre, correo, password, rol)
-                        VALUES ('admin', 'admin@admin.com', '031204zLouisyz', 'admin')`,
-                    (err) => {
-                        if (err) {
-                            console.error('❌ Error al crear superusuario:', err.message);
-                        } else {
-                            console.log('✅ Superusuario creado: admin@admin.com / 031204zLouisyz');
-                        }
-                    }
-                );
-            }
-        });
     });
 });
 
@@ -161,6 +143,6 @@ app.get('/error', (req, res) => res.render('error', { mensaje: 'Algo salió mal'
 app.use((req, res) => res.status(404).render('error', { mensaje: 'Página no encontrada' }));
 
 // Iniciar servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en http://0.0.0.0:${port}`);
 });
